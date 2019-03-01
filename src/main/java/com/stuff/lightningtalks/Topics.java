@@ -1,5 +1,8 @@
 package com.stuff.lightningtalks;
 
+import java.util.Collection;
+import java.util.List;
+
 //business layer
 public class Topics {
 	
@@ -16,8 +19,13 @@ public class Topics {
 	//inject durable storage
 	DurableTopicsFacade topicsDataStore;
 
-	public boolean submit(String topic, String description, String userId) {
-		return topicsDataStore.persist(topic, description, userId);
+	public boolean submit(String subject, String description, String userId) {
+		Topic topic = new Topic(subject, description, userId);
+		return topicsDataStore.persist(topic);
+	}
+	
+	public Collection<Topic> retrieve() {
+		return topicsDataStore.list();
 	}
 	
 	
