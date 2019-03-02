@@ -1,11 +1,11 @@
 package com.stuff.lightningtalks;
 
+import java.util.Calendar;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
 import org.junit.After;
-import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -35,7 +35,8 @@ public class TopicsTest {
 		Collection<Topic> list = topics.retrieve();
 		assertEquals("Topic couldn't be persisted!",1, list.size());
 		assertTrue("Topic submitted and persisted are not equal!", list.contains(
-				new Topic("First Topic", "Topic Description", "email@domain.com")));
+				new Topic("First Topic", "Topic Description", "email@domain.com",
+						Calendar.getInstance().getTime())));
 	}
 	
 	@Test
@@ -46,8 +47,10 @@ public class TopicsTest {
 		Collection<Topic> list = topics.retrieve();
 		assertEquals("Topic couldn't be persisted!",2, list.size());
 		assertTrue("Topics submitted and persisted are not equal!", list.contains(
-				new Topic("First Topic", "Topic Description", "email@domain.com")) &&
-				list.contains(new Topic("Second Topic", "Topic Description", "email@domain.com")));
+				new Topic("First Topic", "Topic Description", "email@domain.com",
+						Calendar.getInstance().getTime())) &&
+				list.contains(new Topic("Second Topic", "Topic Description", "email@domain.com",
+						Calendar.getInstance().getTime())));
 	}
 	
 	
