@@ -63,7 +63,6 @@ public class Topic {
 	
 	@Override
 	public int hashCode() {
-		System.out.println(this.time.getTime());
 		return this.subject.hashCode()/11
 				+ this.description.hashCode()/33
 				+ this.userId.hashCode()

@@ -53,5 +53,4 @@ public class TopicsTest {
 						Calendar.getInstance().getTime())));
 	}
 	
-	
 }
