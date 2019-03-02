@@ -23,9 +23,13 @@ public class Topics {
 		this.topicsDataStore = topicsDataStore;
 	}
 
-	public Object submit(String subject, String description, String userId) {
+	public Object submit(String subject, String description, String userId,
+			String ip, String host, String agent) {
 		Topic topic = new Topic(subject, description, userId,
 				Calendar.getInstance().getTime());
+		topic.setIpAddress(ip);
+		topic.setHostName(host);
+		topic.setUserAgent(agent);
 		return topicsDataStore.persist(topic);
 	}
 	

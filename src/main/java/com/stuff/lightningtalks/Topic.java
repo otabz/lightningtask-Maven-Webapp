@@ -13,6 +13,9 @@ public class Topic {
 	private String userId;
 	private Date time;
 	private Date talkDate;
+	private String ipAddress;
+	private String hostName;
+	private String userAgent;
 
 	// requirements of a valid object must be declared while constructing it
 	public Topic() {
@@ -114,6 +117,30 @@ public class Topic {
 		return this.subject.hashCode() / 11 + this.description.hashCode() / 33
 				+ this.userId.hashCode() + (int) this.time.getTime()
 				+ (int) this.time.getTime();
+	}
+
+	public String getIpAddress() {
+		return ipAddress;
+	}
+
+	public void setIpAddress(String ipAddress) {
+		this.ipAddress = ipAddress;
+	}
+
+	public String getHostName() {
+		return hostName;
+	}
+
+	public void setHostName(String hostName) {
+		this.hostName = hostName;
+	}
+
+	public String getUserAgent() {
+		return userAgent;
+	}
+
+	public void setUserAgent(String userAgent) {
+		this.userAgent = userAgent;
 	}
 
 }

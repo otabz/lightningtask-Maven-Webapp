@@ -31,7 +31,8 @@ public class TopicsTest {
 	@Test
 	public void submitATopicSuccessfully() {
 		Topics topics = new Topics(db);
-		topics.submit("First Topic", "Topic Description", "email@domain.com");
+		topics.submit("First Topic", "Topic Description", "email@domain.com",
+				"", "", "");
 		Collection<Topic> list = topics.retrieve();
 		assertEquals("Topic couldn't be persisted!",1, list.size());
 		assertTrue("Topic submitted and persisted are not equal!", list.contains(
@@ -42,8 +43,10 @@ public class TopicsTest {
 	@Test
 	public void submitMultiTopicsSuccessfully() {
 		Topics topics = new Topics(db);
-		topics.submit("First Topic", "Topic Description", "email@domain.com");
-		topics.submit("Second Topic", "Topic Description", "email@domain.com");
+		topics.submit("First Topic", "Topic Description", "email@domain.com",
+				"", "", "");
+		topics.submit("Second Topic", "Topic Description", "email@domain.com",
+				"", "", "");
 		Collection<Topic> list = topics.retrieve();
 		assertEquals("Topic couldn't be persisted!",2, list.size());
 		assertTrue("Topics submitted and persisted are not equal!", list.contains(
