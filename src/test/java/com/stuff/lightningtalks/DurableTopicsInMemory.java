@@ -4,9 +4,11 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
+import javax.enterprise.inject.Alternative;
 import javax.inject.Named;
 
-@Named("InMemory")
+
+@Alternative
 public class DurableTopicsInMemory implements DurableTopicsFacade {
 
 	Set<Topic> setOfTopics;

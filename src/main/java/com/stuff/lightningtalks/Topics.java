@@ -1,9 +1,10 @@
 package com.stuff.lightningtalks;
 
+import java.sql.Timestamp;
 import java.util.Calendar;
 import java.util.Collection;
+import java.util.Date;
 import java.util.List;
-
 import javax.inject.Inject;
 import javax.inject.Named;
 

@@ -3,18 +3,46 @@ package com.stuff.lightningtalks;
 import java.util.Calendar;
 import java.util.Date;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
 //entity
 //be careful while creating entities from schema
 //business logic must not overwrite
+/**
+ * Topic entity. @author Tayyab
+ */
+@Entity
+@Table(name="topic"
+    ,catalog="lightningtalks"
+)
 public class Topic {
 
+	@Id
+    @Column(name="subject", unique=true, nullable=false, length=80)
 	private String subject;
+	
+	@Column(name="description", length=120)
 	private String description;
+	
+	@Column(name="email", nullable=false)
 	private String userId;
+	
+	@Column(name="submission", nullable=false, length=19)
 	private Date time;
+	
+	@Column(name="talk", nullable=false)
 	private Date talkDate;
+	
+	@Column(name="ip", length=45)
 	private String ipAddress;
+	
+	@Column(name="host", length=45)
 	private String hostName;
+	
+	@Column(name="agent", length=300)
 	private String userAgent;
 
 	// requirements of a valid object must be declared while constructing it
@@ -141,6 +169,26 @@ public class Topic {
 
 	public void setUserAgent(String userAgent) {
 		this.userAgent = userAgent;
+	}
+
+	public String getSubject() {
+		return subject;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public String getUserId() {
+		return userId;
+	}
+
+	public Long getTime() {
+		return time.getTime();
+	}
+
+	public Long getTalkDate() {
+		return talkDate.getTime();
 	}
 
 }
