@@ -11,29 +11,29 @@ public class BodyParams {
 	private String email;
 	private String error;
 	
-	public boolean validate() {
+	public boolean notValid() {
 		if(!(notNull(this.subject)
 		&& notEmpty(this.subject)
 		&& withinCharacterLimit(this.subject,
 				TOPIC_LENGTH))) {
 			this.error = String.format(PARAM_ERROR, "topic", TOPIC_LENGTH);
-			return false;
+			return true;
 		}
 		if(!(notNull(this.description)
 				&& notEmpty(this.description)
 				&& withinCharacterLimit(this.description,
 						DESCRIPTION_LENGTH))) {
 			this.error = String.format(PARAM_ERROR, "description", DESCRIPTION_LENGTH);
-			return false;
+			return true;
 		}
 		if(!(notNull(this.email)
 				&& notEmpty(this.email)
 				&& withinCharacterLimit(this.email,
 						EMAIL_LENGTH))) {
 			this.error = String.format(PARAM_ERROR, "email", EMAIL_LENGTH);
-			return false;
+			return true;
 		}
-		return true;
+		return false;
 	}
 	
 	public boolean notNull(String value) {

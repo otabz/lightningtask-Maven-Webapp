@@ -6,6 +6,8 @@ import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 //entity
@@ -18,6 +20,9 @@ import javax.persistence.Table;
 @Table(name="topic"
     ,catalog="lightningtalks"
 )
+@NamedQueries(value = { 
+		@NamedQuery(name = "Topic.All", query = "SELECT t FROM Topic t ORDER BY t.time asc")
+		})
 public class Topic {
 
 	@Id

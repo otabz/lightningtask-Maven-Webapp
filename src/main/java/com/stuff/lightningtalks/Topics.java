@@ -13,7 +13,7 @@ public class Topics {
 	
 	//inject durable storage
 	@Inject
-	DurableTopicsFacade topicsDataStore;
+	private DurableTopicsFacade topicsDataStore;
 	
 	//no-args, default should be there for injections
 	public Topics(){
@@ -32,6 +32,10 @@ public class Topics {
 		topic.setHostName(host);
 		topic.setUserAgent(agent);
 		return topicsDataStore.persist(topic);
+	}
+	
+	public boolean notUnique(String topic) {
+		return topicsDataStore.notUnique(topic);
 	}
 	
 	public Collection<Topic> retrieve() {

@@ -4,6 +4,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
+
 import javax.enterprise.inject.Alternative;
 import javax.inject.Named;
 
@@ -27,6 +28,15 @@ public class DurableTopicsInMemory implements DurableTopicsFacade {
 	
 	public Collection<Topic> list() {
 		return Collections.unmodifiableCollection(this.setOfTopics);
+	}
+
+	public boolean notUnique(String topic) {
+		for(Topic atopic : setOfTopics) {
+			if(atopic.getSubject().equalsIgnoreCase(topic)){
+				return true;
+			}
+		}
+		return false;
 	}
 
 }

@@ -1,10 +1,10 @@
 package com.stuff.lightningtalks;
 
 import java.util.Collection;
-
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 @Stateless
 public class DurableTopicsEntityManager implements DurableTopicsFacade {
@@ -18,8 +18,15 @@ public class DurableTopicsEntityManager implements DurableTopicsFacade {
 	}
 
 	public Collection<Topic> list() {
-		// TODO Auto-generated method stub
-		return null;
+		Query q = em.createNamedQuery("Topic.All", Topic.class);
+		return q.getResultList();
+	}
+
+	public boolean notUnique(String topic) {
+		if(null != em.find(Topic.class, topic)) {
+			return true;
+		}
+		return false;
 	}
 
 }
