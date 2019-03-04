@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  list: 'http://localhost:8080/lightningtask/api/'
+  url: 'http://localhost:8080/lightningtask/api/'
 };
 
 /*

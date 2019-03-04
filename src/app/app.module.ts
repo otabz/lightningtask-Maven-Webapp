@@ -12,6 +12,7 @@ import {TopicsService} from './topics.service';
 import { DatePickerComponent } from './date-picker/date-picker.component';
 import {HttpClientModule} from '@angular/common/http';
 import {PreFetchGuard} from './pre-fetch.guard';
+import {FormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import {PreFetchGuard} from './pre-fetch.guard';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    FormsModule,
     HttpClientModule
   ],
   providers: [TopicsService, PreFetchGuard],

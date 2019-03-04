@@ -1,0 +1,48 @@
+.col-xs-12, col-xl-6, col-lg-6 {
+
+}
+
+.column-in-center{
+  float: none;
+  margin: 0 auto;
+}
+
+.btn-primary {
+  border-radius: 0px;
+}
+
+.btn-circle {
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  padding: 6px 0;
+  font-size: 12px;
+  line-height: 1.428571429;
+  border-radius: 15px;
+}
+
+input[type="text"],
+select.form-control,
+textarea.form-control {
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid #000000;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  border-radius: 0;
+}
+
+input[type="text"]:focus,
+select.form-control:focus,
+textarea.form-control:focus {
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+
+textarea.ng-invalid.ng-touched {
+  border-bottom: 1px solid red;
+}
+
+input.ng-invalid.ng-touched {
+  border-bottom: 1px solid red;
+}

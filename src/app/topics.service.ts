@@ -12,12 +12,14 @@ export class TopicsService {
   }
 
   list() {
-    this.http.get<Topic[]>(environment.list).subscribe(
-      (response) => this.topics = response.slice()
-    );
+    return this.http.get<Topic[]>(environment.url);
   }
 
   topicAt(index) {
     return this.topics[index];
+  }
+
+  submit(topic: any) {
+    return this.http.post(environment.url, topic);
   }
 }

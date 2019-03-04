@@ -1,3 +1,36 @@
-<p>
-  topic-submission works!
-</p>
+<div class="col-xs-12 col-xl-5 col-lg-5 column-in-center">
+  <div class="panel panel-default">
+
+    <div class="panel-body">
+    <form (ngSubmit) = onSubmit() #f="ngForm">
+      <div class="form-group">
+      <label for="topic">Topic</label>
+      <input type="text" id="topic" class="form-control" ngModel name="topic" required #topic="ngModel">
+        <p class="help-block pull-right" *ngIf="!topic.valid && topic.touched">Please enter topic!</p>
+      </div>
+      <div class="form-group">
+        <label for="description">Description</label>
+        <textarea rows="3" id="description" class="form-control" ngModel name="description" required #desc="ngModel"></textarea>
+        <p class="help-block pull-right" *ngIf="!desc.valid && desc.touched">Please enter description!</p>
+      </div>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="text" id="email" class="form-control" ngModel name="email" required email #email="ngModel">
+        <p class="help-block pull-right" *ngIf="!email.valid && email.touched">Please enter valid email!</p>
+      </div>
+      <div id="response-data" *ngIf="show">
+      <div class="form-group">
+        <label for="submissionTime">Submission</label>
+        <input type="text" id="submissionTime" class="form-control" [ngModel]="submission" name="submissionTime">
+      </div>
+      <div class="form-group">
+        <label for="talkTime">Talk</label>
+        <input type="text" id="talkTime" class="form-control" [ngModel]="talk" name="talkTime">
+      </div>
+      </div>
+            <button *ngIf="f.valid && !showClear" class="btn btn-primary pull-right">Submit</button>
+    </form>
+      <button (click)="onBack()" class="btn btn-default pull-left glyphicon glyphicon-menu-left btn-circle"></button>
+    </div>
+  </div>
+</div>

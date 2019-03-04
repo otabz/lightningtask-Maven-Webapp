@@ -4,3 +4,9 @@
   font-weight: bold;
   color: darkgrey;
 }
+h1 {
+  margin-bottom: 0px;
+}
+.btn {
+  border-radius: 0px;
+}

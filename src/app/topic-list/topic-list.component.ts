@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import {TopicsService} from '../topics.service';
-import {Topic} from '../topic.model';
 import {ActivatedRoute} from '@angular/router';
+import {catchError} from 'rxjs/operators';
+import {Topic} from '../topic.model';
+import {HttpErrorResponse} from '@angular/common/http';
+import {throwError} from 'rxjs';
 
 @Component({
   selector: 'app-topic-list',
@@ -9,12 +12,21 @@ import {ActivatedRoute} from '@angular/router';
   styleUrls: ['./topic-list.component.css']
 })
 export class TopicListComponent implements OnInit {
-
+  crashed = 'kkk';
   constructor(private router: ActivatedRoute,
     private service: TopicsService) {
   }
 
   ngOnInit() {
-    this.service.list();
+    this.service.list().pipe(catchError(this.handleError))
+      .subscribe(
+      (response: Topic[]) => {
+        this.service.topics = response;
+      }
+    );
+  }
+
+  handleError(error) {
+    return throwError(error);
   }
 }
