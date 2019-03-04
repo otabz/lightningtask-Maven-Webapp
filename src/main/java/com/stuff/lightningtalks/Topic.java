@@ -188,12 +188,11 @@ public class Topic {
 		return userId;
 	}
 
-	public Long getTime() {
-		return time.getTime();
+	public String getTime() {
+		return time.toString();
 	}
 
-	public Long getTalkDate() {
-		return talkDate.getTime();
+	public String getTalkDate() {
+		return talkDate.toString();
 	}
-
 }
