@@ -1,3 +1,19 @@
-<p>
-  topic-list works!
-</p>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-xs-8">
+      <a class="list-group-item clearfix" style="cursor: pointer" *ngFor="let topic of topics, let i = index"
+      [routerLink]="[i]">
+        <div class="pull-left">
+          <div class="list-group-item-heading">
+            <h4>{{topic.subject}}</h4>
+            <span class="glyphicon glyphicon-time"></span><span> Pending | {{topic.email}}</span>
+        </div>
+          <p class="list-group-item-text">{{topic.description}}</p>
+        </div>
+      </a>
+      </div>
+    <div class="col-xs-4">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+  </div>

@@ -6,19 +6,24 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { TopicListComponent } from './topic-list/topic-list.component';
 import { TopicSubmissionComponent } from './topic-submission/topic-submission.component';
+import { TopicComponent } from './topic-list/topic/topic.component';
+import { NoTopicComponent } from './topic-list/no-topic/no-topic.component';
+import {TopicsService} from './topics.service';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     TopicListComponent,
-    TopicSubmissionComponent
+    TopicSubmissionComponent,
+    TopicComponent,
+    NoTopicComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [TopicsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
