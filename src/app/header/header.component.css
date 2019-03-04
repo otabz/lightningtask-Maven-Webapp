@@ -1,5 +1,11 @@
 .navbar-default {
   border-color: transparent;
+  margin-bottom: 10px;
+}
+
+.navbar-brand {
+  font-size: x-large;
+
 }
 
 .glyphicon-plus {

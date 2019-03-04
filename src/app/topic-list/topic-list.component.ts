@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {TopicsService} from '../topics.service';
+import {Topic} from '../topic.model';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-topic-list',
@@ -8,13 +10,11 @@ import {TopicsService} from '../topics.service';
 })
 export class TopicListComponent implements OnInit {
 
-  topics = [];
-
-  constructor(private service: TopicsService) {
-    this.topics = service.topics;
+  constructor(private router: ActivatedRoute,
+    private service: TopicsService) {
   }
 
   ngOnInit() {
+    this.service.list();
   }
-
 }

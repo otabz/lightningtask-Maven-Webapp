@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {ActivatedRoute, Params} from '@angular/router';
+import {ActivatedRoute, Params, Router} from '@angular/router';
 import {Topic} from '../../topic.model';
 import {TopicsService} from '../../topics.service';
 
@@ -9,14 +9,22 @@ import {TopicsService} from '../../topics.service';
   styleUrls: ['./topic.component.css']
 })
 export class TopicComponent implements OnInit {
-  topic: Topic;
+  topic: Topic = new Topic('', '', '', '', '', '',
+    '', '');
+  id: Number;
   constructor(private route: ActivatedRoute,
+              private router: Router,
               private service: TopicsService) { }
 
   ngOnInit() {
     this.route.params.subscribe(
       (params: Params) => {
-        this.topic = this.service.topicAt(params['id']);
+        this.id = params['id'];
+        if (this.service.topics.length === 0) {
+            this.router.navigate(['/topics']);
+        } else {
+          this.topic = this.service.topicAt(this.id);
+        }
       }
     );
   }

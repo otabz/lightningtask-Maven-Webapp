@@ -9,6 +9,9 @@ import { TopicSubmissionComponent } from './topic-submission/topic-submission.co
 import { TopicComponent } from './topic-list/topic/topic.component';
 import { NoTopicComponent } from './topic-list/no-topic/no-topic.component';
 import {TopicsService} from './topics.service';
+import { DatePickerComponent } from './date-picker/date-picker.component';
+import {HttpClientModule} from '@angular/common/http';
+import {PreFetchGuard} from './pre-fetch.guard';
 
 @NgModule({
   declarations: [
@@ -17,13 +20,15 @@ import {TopicsService} from './topics.service';
     TopicListComponent,
     TopicSubmissionComponent,
     TopicComponent,
-    NoTopicComponent
+    NoTopicComponent,
+    DatePickerComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
-  providers: [TopicsService],
+  providers: [TopicsService, PreFetchGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

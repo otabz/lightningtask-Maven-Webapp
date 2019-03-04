@@ -2,10 +2,10 @@ export class Topic {
 
   constructor(public subject: string,
               public description: string,
-              public email: string,
-              public submittedAt: string,
-              public talkAt: string,
-              public host: string,
-              public ip: string,
-              public agent: string) {}
+              public userId: string,
+              public time: string,
+              public talkDate: string,
+              public hostName: string,
+              public ipAddress: string,
+              public userAgent: string) {}
 }

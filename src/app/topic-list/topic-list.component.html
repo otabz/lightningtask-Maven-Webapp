@@ -1,12 +1,17 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-xs-8">
-      <a class="list-group-item clearfix" style="cursor: pointer" *ngFor="let topic of topics, let i = index"
+      <app-date-picker></app-date-picker>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-8">
+      <a class="list-group-item clearfix" style="cursor: pointer" *ngFor="let topic of this.service.topics, let i = index"
       [routerLink]="[i]">
         <div class="pull-left">
           <div class="list-group-item-heading">
             <h4>{{topic.subject}}</h4>
-            <span class="glyphicon glyphicon-time"></span><span> Pending | {{topic.email}}</span>
+            <span class="glyphicon glyphicon-time"></span><span> Pending | {{topic.userId}}</span>
         </div>
           <p class="list-group-item-text">{{topic.description}}</p>
         </div>
