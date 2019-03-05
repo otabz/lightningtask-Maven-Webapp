@@ -14,7 +14,7 @@ import {throwError} from 'rxjs';
 export class TopicListComponent implements OnInit {
   crashed = 'kkk';
   constructor(private router: ActivatedRoute,
-    private service: TopicsService) {
+    public service: TopicsService) {
   }
 
   ngOnInit() {

@@ -13,7 +13,7 @@ const routes: Routes = [{path: '', redirectTo: 'topics', pathMatch: 'full'},
 }, {path: 'submit', component: TopicSubmissionComponent}];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, {useHash: true})],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
