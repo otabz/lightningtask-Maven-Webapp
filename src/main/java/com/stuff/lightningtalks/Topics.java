@@ -1,12 +1,10 @@
 package com.stuff.lightningtalks;
 
-import java.sql.Timestamp;
+
 import java.util.Calendar;
 import java.util.Collection;
-import java.util.Date;
-import java.util.List;
 import javax.inject.Inject;
-import javax.inject.Named;
+
 
 //business layer
 public class Topics {
@@ -40,6 +38,10 @@ public class Topics {
 	
 	public Collection<Topic> retrieve() {
 		return topicsDataStore.list();
+	}
+	
+	public Collection<Topic> matches(String topic) {
+		return topicsDataStore.matches(topic);
 	}
 	
 }

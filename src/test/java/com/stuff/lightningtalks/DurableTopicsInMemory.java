@@ -39,4 +39,9 @@ public class DurableTopicsInMemory implements DurableTopicsFacade {
 		return false;
 	}
 
+	public Collection<Topic> matches(String topic) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

@@ -1,5 +1,6 @@
 package com.stuff.lightningtalks;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -9,6 +10,27 @@ import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+
+import org.apache.lucene.analysis.core.KeywordTokenizerFactory;
+import org.apache.lucene.analysis.core.LowerCaseFilterFactory;
+import org.apache.lucene.analysis.miscellaneous.WordDelimiterFilterFactory;
+import org.apache.lucene.analysis.ngram.EdgeNGramFilterFactory;
+import org.apache.lucene.analysis.ngram.NGramFilterFactory;
+import org.apache.lucene.analysis.pattern.PatternReplaceFilterFactory;
+import org.apache.lucene.analysis.snowball.SnowballPorterFilterFactory;
+import org.apache.lucene.analysis.standard.StandardTokenizerFactory;
+import org.hibernate.search.annotations.Analyze;
+import org.hibernate.search.annotations.Analyzer;
+import org.hibernate.search.annotations.AnalyzerDef;
+import org.hibernate.search.annotations.AnalyzerDefs;
+import org.hibernate.search.annotations.Field;
+import org.hibernate.search.annotations.Fields;
+import org.hibernate.search.annotations.Index;
+import org.hibernate.search.annotations.Indexed;
+import org.hibernate.search.annotations.Parameter;
+import org.hibernate.search.annotations.Store;
+import org.hibernate.search.annotations.TokenFilterDef;
+import org.hibernate.search.annotations.TokenizerDef;
 
 //entity
 //be careful while creating entities from schema
@@ -20,6 +42,27 @@ import javax.persistence.Table;
 @Table(name="topic"
     ,catalog="lightningtalks"
 )
+@Indexed
+@AnalyzerDefs({
+@AnalyzerDef(name = "standardAnalyzer",
+
+// Split input into tokens according to tokenizer
+tokenizer = @TokenizerDef(factory = StandardTokenizerFactory.class),
+
+filters = {
+ // Normalize token text to lowercase, as the user is unlikely to
+ // care about casing when searching for matches
+ @TokenFilterDef(factory = WordDelimiterFilterFactory.class),
+ @TokenFilterDef(factory = LowerCaseFilterFactory.class),
+ @TokenFilterDef(factory = PatternReplaceFilterFactory.class, params = {
+   @Parameter(name = "pattern", value = "([^a-zA-Z0-9\\.])"),
+   @Parameter(name = "replacement", value = " "),
+   @Parameter(name = "replace", value = "all") }),
+ @TokenFilterDef(factory = SnowballPorterFilterFactory.class, params = {
+	      @Parameter(name = "language", value = "English")
+	    })
+})
+})
 @NamedQueries(value = { 
 		@NamedQuery(name = "Topic.All", query = "SELECT t FROM Topic t ORDER BY t.time asc")
 		})
@@ -27,6 +70,10 @@ public class Topic {
 
 	@Id
     @Column(name="subject", unique=true, nullable=false, length=80)
+	@Fields({
+		  @Field(name = "subject_", index = Index.YES, store = Store.YES,
+		analyze = Analyze.YES, analyzer = @Analyzer(definition = "standardAnalyzer"))
+		})
 	private String subject;
 	
 	@Column(name="description", length=120)
@@ -189,10 +236,12 @@ public class Topic {
 	}
 
 	public String getTime() {
-		return time.toString();
+		SimpleDateFormat format = new SimpleDateFormat("MMMM dd yy HH:mm");
+		return format.format(this.time);
 	}
 
 	public String getTalkDate() {
-		return talkDate.toString();
+		SimpleDateFormat format = new SimpleDateFormat("MMMM dd yy");
+		return format.format(this.talkDate);
 	}
 }

@@ -2,6 +2,7 @@ package com.stuff.lightningtalks;
 
 import java.util.Collection;
 import java.util.logging.Logger;
+
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
@@ -10,6 +11,7 @@ import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.HttpHeaders;
 import javax.ws.rs.core.MediaType;
@@ -27,6 +29,13 @@ public class TopicResource {
 	
 	@Inject
 	Topics topics;
+	
+	@GET
+	@Path("/matches")
+	public Response matches(@QueryParam("t") String topic) {
+		return createResponse(Response.Status.OK,
+				this.topics.matches(topic));
+	}
 	
 	@GET
 	public Response topics() {
