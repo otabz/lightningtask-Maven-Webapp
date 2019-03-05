@@ -5,8 +5,9 @@
     <form (ngSubmit) = onSubmit() #f="ngForm">
       <div class="form-group">
       <label for="topic">Topic</label>
-      <input type="text" id="topic" class="form-control" ngModel name="topic" required #topic="ngModel">
-        <p class="help-block pull-right" *ngIf="!topic.valid && topic.touched">Please enter topic!</p>
+      <input type="text" (change)="onChange()" id="topic" class="form-control" ngModel name="topic" required #topic="ngModel">
+        <p class="help-block pull-right" *ngIf="!topic.valid && topic.touched && cerror.error === ''">Please enter topic!</p>
+        <p class="help-block pull-right" *ngIf="cerror.error !== ''">{{cerror.error}}</p>
       </div>
       <div class="form-group">
         <label for="description">Description</label>

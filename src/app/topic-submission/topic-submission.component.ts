@@ -3,6 +3,9 @@ import {FormGroup, NgForm} from '@angular/forms';
 import {Router} from '@angular/router';
 import {TopicsService} from '../topics.service';
 import {Topic} from '../topic.model';
+import {HttpErrorResponse} from '@angular/common/http';
+import {catchError} from 'rxjs/operators';
+import {throwError} from 'rxjs';
 
 @Component({
   selector: 'app-topic-submission',
@@ -20,6 +23,9 @@ export class TopicSubmissionComponent implements OnInit {
     description: '',
     email: ''
   };
+  cerror = {
+    error: ''
+  };
   constructor(private router: Router,
               private service: TopicsService) { }
 
@@ -35,7 +41,8 @@ export class TopicSubmissionComponent implements OnInit {
       subject: this.form.value.topic,
       description: this.form.value.description,
       email: this.form.value.email
-    }).subscribe(
+    })
+      .subscribe(
       (response: Topic) => {
         this.show = true;
         this.showClear = true;
@@ -46,6 +53,10 @@ export class TopicSubmissionComponent implements OnInit {
         });
         this.submission = response.time;
         this.talk = response.talkDate;
+      },
+      error => {
+        this.form.controls['topic'].setErrors({'incorrect': true});
+        this.cerror = error.error;
       }
     );
   }
@@ -61,4 +72,8 @@ export class TopicSubmissionComponent implements OnInit {
     this.showClear = false;
   }
 
+  onChange() {
+    this.form.controls['topic'].setErrors(null);
+    this.cerror.error = '';
+  }
 }
