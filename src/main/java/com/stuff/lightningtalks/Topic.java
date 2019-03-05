@@ -64,7 +64,7 @@ filters = {
 })
 })
 @NamedQueries(value = { 
-		@NamedQuery(name = "Topic.All", query = "SELECT t FROM Topic t ORDER BY t.time asc")
+		@NamedQuery(name = "Topic.All", query = "SELECT t FROM Topic t WHERE t.talkDate=:talk ORDER BY t.time asc")
 		})
 public class Topic {
 

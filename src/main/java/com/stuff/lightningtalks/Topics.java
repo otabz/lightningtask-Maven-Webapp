@@ -1,8 +1,12 @@
 package com.stuff.lightningtalks;
 
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Collection;
+import java.util.Date;
+
 import javax.inject.Inject;
 
 
@@ -36,8 +40,15 @@ public class Topics {
 		return topicsDataStore.notUnique(topic);
 	}
 	
-	public Collection<Topic> retrieve() {
-		return topicsDataStore.list();
+	public Collection<Topic> retrieve() throws ParseException {
+		Topic topic = new Topic("", "", "", new Date());
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(topic.calculateTalkDate());
+		cal.set(Calendar.HOUR_OF_DAY, 0);  
+        cal.set(Calendar.MINUTE, 0);  
+        cal.set(Calendar.SECOND, 0);  
+        cal.set(Calendar.MILLISECOND, 0);
+		return topicsDataStore.list(cal.getTime());
 	}
 	
 	public Collection<Topic> matches(String topic) {

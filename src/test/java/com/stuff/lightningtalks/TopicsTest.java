@@ -1,5 +1,6 @@
 package com.stuff.lightningtalks;
 
+import java.text.ParseException;
 import java.util.Calendar;
 import java.util.Collection;
 import java.util.HashSet;
@@ -29,7 +30,7 @@ public class TopicsTest {
 	}
 
 	@Test
-	public void submitATopicSuccessfully() {
+	public void submitATopicSuccessfully() throws ParseException {
 		Topics topics = new Topics(db);
 		topics.submit("First Topic", "Topic Description", "email@domain.com",
 				"", "", "");
@@ -41,7 +42,7 @@ public class TopicsTest {
 	}
 	
 	@Test
-	public void submitMultiTopicsSuccessfully() {
+	public void submitMultiTopicsSuccessfully() throws ParseException {
 		Topics topics = new Topics(db);
 		topics.submit("First Topic", "Topic Description", "email@domain.com",
 				"", "", "");

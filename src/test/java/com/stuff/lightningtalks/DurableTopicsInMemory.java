@@ -2,6 +2,7 @@ package com.stuff.lightningtalks;
 
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -26,7 +27,7 @@ public class DurableTopicsInMemory implements DurableTopicsFacade {
 		return this.setOfTopics.add(topic);
 	}
 	
-	public Collection<Topic> list() {
+	public Collection<Topic> list(Date talkDate) {
 		return Collections.unmodifiableCollection(this.setOfTopics);
 	}
 

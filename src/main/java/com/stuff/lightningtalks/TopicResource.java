@@ -39,13 +39,17 @@ public class TopicResource {
 	
 	@GET
 	public Response topics() {
-		Collection<Topic> list = topics.retrieve();
-		if (list.isEmpty()) {
-			return createResponse(Response.Status.NO_CONTENT,
-					NO_CONTENT_ERROR);
+		try {
+			Collection<Topic> list = topics.retrieve();
+			if (list.isEmpty()) {
+				return createResponse(Response.Status.NO_CONTENT,
+						NO_CONTENT_ERROR);
+			}
+			return createResponse(Response.Status.OK, topics.retrieve());
+		} catch (Exception e) {
+			return createResponse(Response.Status.INTERNAL_SERVER_ERROR,
+					e.getMessage());
 		}
-		return createResponse(Response.Status.OK, 
-				topics.retrieve());
 	}
 
 	@POST

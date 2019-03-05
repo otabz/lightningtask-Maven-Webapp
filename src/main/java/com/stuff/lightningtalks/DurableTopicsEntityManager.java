@@ -1,6 +1,7 @@
 package com.stuff.lightningtalks;
 
 import java.util.Collection;
+import java.util.Date;
 import java.util.List;
 
 import javax.ejb.Stateless;
@@ -26,8 +27,9 @@ public class DurableTopicsEntityManager implements DurableTopicsFacade {
 		return topic;
 	}
 
-	public Collection<Topic> list() {
-		Query q = em.createNamedQuery("Topic.All", Topic.class);
+	public Collection<Topic> list(Date talkDate) {
+		Query q = em.createNamedQuery("Topic.All", Topic.class)
+				.setParameter("talk", talkDate);
 		return q.getResultList();
 	}
 
